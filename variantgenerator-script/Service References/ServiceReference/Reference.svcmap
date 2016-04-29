@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81f3b726-0ce9-4377-ae6a-fb0b6950c341" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://glservice.svtz.ru:8000/VariantGenService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VariantGenService.xsd" MetadataType="Schema" ID="12f71c96-4b4e-41a4-aa68-d275c6788789" SourceId="1" SourceUrl="http://glservice.svtz.ru:8000/VariantGenService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VariantGenService.disco" MetadataType="Disco" ID="d53f03aa-9596-4bdc-8ec2-be7b1e5d667a" SourceId="1" SourceUrl="http://glservice.svtz.ru:8000/VariantGenService.svc?disco" />
+    <MetadataFile FileName="VariantGenService1.xsd" MetadataType="Schema" ID="b91b6c32-61ca-4483-8a90-0e894cbb3488" SourceId="1" SourceUrl="http://glservice.svtz.ru:8000/VariantGenService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VariantGenService.wsdl" MetadataType="Wsdl" ID="6f0b5fb4-b20e-4bfc-8f0d-13d6c9fa3e77" SourceId="1" SourceUrl="http://glservice.svtz.ru:8000/VariantGenService.svc?wsdl" />
+    <MetadataFile FileName="VariantGenService2.xsd" MetadataType="Schema" ID="99c27c49-8d99-41dd-b431-ceeeb4c87b96" SourceId="1" SourceUrl="http://glservice.svtz.ru:8000/VariantGenService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
