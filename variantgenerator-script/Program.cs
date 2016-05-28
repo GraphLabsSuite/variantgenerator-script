@@ -1,4 +1,5 @@
-﻿using GraphLabs.Graphs;
+﻿using System;
+using GraphLabs.Graphs;
 using GraphLabs.Graphs.DataTransferObjects.Converters;
 using variantgenerator_script.ServiceReference;
 
@@ -6,7 +7,7 @@ namespace variantgenerator_script
 {
     class Program
     {
-        static void Main(string[] args)
+        public static IGraph[] GetSubgraphsGraphs()
         {
             #region Подграфы
             #region #1 - 11
@@ -53,6 +54,19 @@ namespace variantgenerator_script
             debugGraph5.AddEdge(new UndirectedEdge(debugGraph5.Vertices[2], debugGraph5.Vertices[4]));
             #endregion
             #endregion
+
+            return new[]
+                   {
+                       debugGraph1,
+                       debugGraph2,
+                       debugGraph3,
+                       debugGraph4,
+                       debugGraph5
+                   };
+        }
+
+        private static IGraph[] GetIsomorphismGraphs()
+        {
             #region Изоморфизм
             #region Группа 1-2
             var graph1 = UndirectedGraph.CreateEmpty(6);
@@ -210,22 +224,50 @@ namespace variantgenerator_script
             #endregion
             #endregion
 
-            var data = VariantSerializer.Serialize(new IGraph[]
-            {
-                graph1,
-            });
-            var taskVariantDto = new TaskVariantDto()
-            {
-                Data = data,
-                GeneratorVersion = "1.0",
-                Id = 0,
-                TaskId = 1,
-                Number = "Вариант 1",
-                Version = null
-            };
+            return new []
+                   {
+                       graph1,
+                       graph2,
+                       graph3,
+                       graph4,
+                       //graph5,
+                       graph6,
+                       graph7,
+                       graph8,
+                       graph9,
+                       graph10,
+                       graph11,
+                       graph12,
+                   };
+        }
 
-            var client = new VariantGenServiceClient();
-            client.SaveVariant(taskVariantDto, 1, false);
+        static void Main(string[] args)
+        {
+            
+            
+
+            foreach (var graph in GetIsomorphismGraphs())
+            //foreach (var graph in GetSubgraphsGraphs())
+            {
+                var data = VariantSerializer.Serialize(
+                    new IGraph[]
+                    {
+                        graph,
+                    });
+
+                var taskVariantDto = new TaskVariantDto
+                {
+                    Data = data,
+                    GeneratorVersion = "1.0",
+                    Id = 0,
+                    TaskId = 4,
+                    Number = "Вариант " + Guid.NewGuid(),
+                    Version = null
+                };
+
+                var client = new VariantGenServiceClient();
+                client.SaveVariant(taskVariantDto, 4, false);
+            }
         }
     }
 }
