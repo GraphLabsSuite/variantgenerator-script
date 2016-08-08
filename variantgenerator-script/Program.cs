@@ -65,6 +65,28 @@ namespace variantgenerator_script
                    };
         }
 
+        public static UndirectedGraph[] GetExternalStabilityGraphs()
+        {
+            #region Внешняя устойчивость
+            var debugGraph = UndirectedGraph.CreateEmpty(7);
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[0], debugGraph.Vertices[5]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[1], debugGraph.Vertices[0]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[1], debugGraph.Vertices[5]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[2], debugGraph.Vertices[1]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[2], debugGraph.Vertices[5]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[3], debugGraph.Vertices[4]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[4], debugGraph.Vertices[2]));
+            //debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[4], debugGraph.Vertices[3]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[5], debugGraph.Vertices[6]));
+            debugGraph.AddEdge(new UndirectedEdge(debugGraph.Vertices[6], debugGraph.Vertices[4]));
+            #endregion
+
+            return new[]
+            {
+                debugGraph
+            };
+        }
+
         private static IGraph[] GetIsomorphismGraphs()
         {
             #region Изоморфизм
@@ -243,8 +265,29 @@ namespace variantgenerator_script
 
         static void Main(string[] args)
         {
-            
-            
+
+            foreach (var externalStabilityGraph in GetExternalStabilityGraphs())
+            {
+                var data = VariantSerializer.Serialize(
+                       new IGraph[]
+                       {
+                        externalStabilityGraph
+                       });
+
+                var taskVariantDto = new TaskVariantDto
+                {
+                    Data = data,
+                    GeneratorVersion = "1.0",
+                    Id = 0,
+                    TaskId = 5,
+                    Number = "Вариант " + Guid.NewGuid(),
+                    Version = null
+                };
+
+                var client = new VariantGenServiceClient();
+                client.SaveVariant(taskVariantDto, 4, false);
+
+            }
 
             foreach (var graph in GetIsomorphismGraphs())
             //foreach (var graph in GetSubgraphsGraphs())
